@@ -20,7 +20,7 @@ This repository contains my personal Neovim configuration using LazyVim, a power
 - **Bufferline:** A buffer management plugin for Neovim, enhancing your buffer navigation.
 - **Lualine:** A fast and customizable statusline for Neovim, offering a sleek and informative interface.
 
-## Screenshots
+## Preview
 ![image](https://github.com/NabajitBhadury/nvim_config/assets/117065551/1ec64883-1ef9-4b3f-abf4-85c18277e6dd)
 
 

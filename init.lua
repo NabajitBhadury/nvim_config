@@ -1,0 +1,6 @@
+require("configs.keymaps")
+require("configs.options")
+require("configs.lazy")
+require("configs.mason")
+require("configs.lsp.init")
+require("configs.lsp.handler")

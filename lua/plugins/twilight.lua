@@ -10,7 +10,7 @@ return {
           inactive = false, -- when true, other windows will be fully dimmed (unless they contain the same buffer)
         },
         context = 10,
-        treesitter = true, 
+        treesitter = true,
         expand = {
           "function",
           "method",

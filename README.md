@@ -19,9 +19,12 @@ This repository contains my personal Neovim configuration using LazyVim, a power
 - **Telescope:** A highly extensible fuzzy finder and picker for Neovim.
 - **Bufferline:** A buffer management plugin for Neovim, enhancing your buffer navigation.
 - **Lualine:** A fast and customizable statusline for Neovim, offering a sleek and informative interface.
+- **Twilight:** Highlight the currently active piece of code within the parentheses or brackets, making it easier to focus on the code user is working on.
 
 ## Preview
-![image](https://github.com/NabajitBhadury/nvim_config/assets/117065551/1ec64883-1ef9-4b3f-abf4-85c18277e6dd)
+[Watch the Screencast](https://github.com/NabajitBhadury/nvim_config/assets/117065551/158e8dda-7dcb-4162-8fc7-b6aced9f33ae)
+
+
 
 
 ## Installation

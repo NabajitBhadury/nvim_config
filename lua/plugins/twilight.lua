@@ -19,7 +19,12 @@ return {
         },
       }
     })
-    vim.cmd("Twilight")
+
+    vim.cmd("augroup TwilightInsert")
+    vim.cmd("autocmd!")
+    vim.cmd("autocmd InsertEnter * Twilight")
+    vim.cmd("autocmd InsertLeave * TwilightDisable")
+    vim.cmd("augroup END")
   end
 }
 

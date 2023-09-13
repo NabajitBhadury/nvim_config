@@ -27,4 +27,3 @@ return {
     vim.cmd("augroup END")
   end
 }
-

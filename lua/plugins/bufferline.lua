@@ -1,14 +1,22 @@
 return {
-  "akinsho/bufferline.nvim",
-  requires = { "nvim-web-devicons" },
-  version = "*",
-  config = function()
-    require("bufferline").setup{
-      options = {
+  {
+    "akinsho/bufferline.nvim",
+    config = function()
+      require ("bufferline").setup({
+        options = {
         diagnostics = "nvim_lsp",
         separator_style = "slant",
-      },
-    }
-  end,
+          offsets = {
+            {
+              filetype = "NvimTree",
+              text = "EXPLORER",
+              padding = 0,
+              text_align = "center",
+              highlight = "Offset",
+            },
+          },
+        },
+      })
+    end,
+  },
 }
-

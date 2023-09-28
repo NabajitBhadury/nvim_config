@@ -22,7 +22,8 @@ This repository contains my personal Neovim configuration using LazyVim, a power
 - **Twilight:** Highlight the currently active piece of code within the parentheses or brackets, making it easier to focus on the code user is working on.
 
 ## Preview
-[Watch the Screencast](https://github.com/NabajitBhadury/nvim_config/assets/117065551/158e8dda-7dcb-4162-8fc7-b6aced9f33ae)
+[Screencast from 2023-09-28 14-27-41.webm](https://github.com/NabajitBhadury/nvim_config/assets/117065551/9ba07e25-9c3e-447b-90da-4903fdbe13ba)
+
 
 
 

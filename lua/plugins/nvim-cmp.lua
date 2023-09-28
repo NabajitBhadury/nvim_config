@@ -1,6 +1,5 @@
 return {
   "hrsh7th/nvim-cmp",
-  event = "InsertEnter",
   dependencies = {
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-nvim-lsp",
@@ -23,38 +22,65 @@ return {
     require("luasnip.loaders.from_vscode").lazy_load()
 
     cmp.setup({
-      completion = {
-        completeopt = "menu,menuone,preview,noselect",
-      },
-      snippet = { -- configure how nvim-cmp interacts with snippet engine
+      snippet = {
         expand = function(args)
-          luasnip.lsp_expand(args.body)
+          require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
         end,
       },
-      mapping = cmp.mapping.preset.insert({
-        ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-        ["<Tab>"] = cmp.mapping.select_next_item(), -- next suggestion
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
-        ["<C-e>"] = cmp.mapping.abort(), -- close completion window
-        ["<CR>"] = cmp.mapping.confirm({ select = false }),
-      }),
-      -- sources for autocompletion
-      sources = cmp.config.sources({
-        { name = "copilot"},
-        { name = "nvim_lsp" },
-        { name = "luasnip" }, -- snippets
-        { name = "buffer" }, -- text within current buffer
-        { name = "path" }, -- file system paths
-      }),
-      -- configure lspkind for vs-code like pictograms in completion menu
       formatting = {
         format = lspkind.cmp_format({
+          mode = "symbol",
           maxwidth = 50,
           ellipsis_char = "...",
+          symbol_map = { Copilot = "" },
         }),
       },
+      -- window = {
+      --   completion = cmp.config.window.bordered(),
+      --   documentation = cmp.config.window.bordered(),
+      -- },
+      mapping = cmp.mapping.preset.insert({
+        ["<Tab>"] = cmp.mapping.select_next_item(), -- next suggestion
+        ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-Space>"] = cmp.mapping.complete(),  -- show completion sugestions
+        ["<C-e>"] = cmp.mapping.abort(),
+        ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ["<C-Tab>"] = cmp.mapping(function(fallback)
+          if luasnip.expandable() then
+            luasnip.expand()
+          elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          else
+            fallback()
+          end
+        end, {
+          "i",
+          "s",
+        }),
+      }),
+      sources = cmp.config.sources({
+        { name = "copilot" },
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "buffer" },
+        { name = "path" },
+      }),
+    })
+    cmp.setup.cmdline({ "/", "?" }, {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = {
+        { name = "buffer" },
+      },
+    })
+    cmp.setup.cmdline(":", {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = "path" },
+      }, {
+        { name = "cmdline" },
+      }),
     })
   end,
 }

@@ -37,6 +37,4 @@ This repository contains my personal Neovim configuration using LazyVim, a power
    ```bash
    https://github.com/NabajitBhadury/nvim_config.git ~/.config/nvim
 
-   
-  ```bash
-   git clone https://github.com/NabajitBhadury/appdata/local/nvim
+  

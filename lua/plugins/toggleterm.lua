@@ -19,7 +19,7 @@ return{
        float_opts = {
          border = "double",
          width = function ()
-           return math.floor(vim.o.columns*0.4)
+           return math.floor(vim.o.columns*0.6)
          end,
          heigth = function ()
           return math.floor(vim.o.lines*0.6)
@@ -54,7 +54,7 @@ return{
         end
 
         vim.keymap.set("n", "<leader>th", create_new_horizontal_term, { noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>tf", create_new_float_term, {noremap = true, silent = true})
+        vim.keymap.set("n", "<leader>tff", create_new_float_term, {noremap = true, silent = true})
         vim.keymap.set("n", "<leader>ts", [[<Cmd>TermSelect<CR>]], { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>trn", [[<Cmd>ToggleTermSetName<CR>]], { noremap = true, silent = true })
 

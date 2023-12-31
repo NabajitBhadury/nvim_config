@@ -1,11 +1,11 @@
 return {
-  "rose-pine/neovim",
-  name = "rose-pine",
+  "catppuccin/nvim",
+  name = "catppuccin",
   priority = 1000,
   config = function()
-    require('rose-pine').setup {
-      disable_background = true,
+    require('catppuccin').setup {
+      transparent_background = true,
     }
-    vim.cmd.colorscheme "rose-pine"
+    vim.cmd.colorscheme "catppuccin"
   end,
 }

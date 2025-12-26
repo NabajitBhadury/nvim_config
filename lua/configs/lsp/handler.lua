@@ -7,23 +7,18 @@ M.setup = function()
     km("n", "[d", vim.diagnostic.goto_prev)
     km("n", "]d", vim.diagnostic.goto_next)
     km("n", "<leader>q", vim.diagnostic.setloclist)
-    local signs = {
-        { name = "DiagnosticSignError", text = "" },
-        { name = "DiagnosticSignWarn",  text = "" },
-        { name = "DiagnosticSignHint",  text = "" },
-        { name = "DiagnosticSignInfo",  text = "" },
-    }
-
-    for _, sign in ipairs(signs) do
-        vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-    end
 
     local config = {
         -- disable virtual text
         virtual_text = true,
-        -- show signs
+        -- show signs using the new method
         signs = {
-            active = signs,
+            text = {
+                [vim.diagnostic.severity.ERROR] = "",
+                [vim.diagnostic.severity.WARN] = "",
+                [vim.diagnostic.severity.HINT] = "",
+                [vim.diagnostic.severity.INFO] = "",
+            },
         },
         update_in_insert = true,
         underline = true,
@@ -69,25 +64,14 @@ local function lsp_keymaps(buff)
         vim.lsp.buf.format({ async = true })
     end, opts)
     km("n", "<leader>rn", vim.lsp.buf.rename, opts)
-    km({ "n", "<leader>ca" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+    km("n", "<leader>ca", vim.lsp.buf.code_action, opts)
     km("n", "gr", vim.lsp.buf.references, opts)
 end
 
--- local function lsp_highlight_document(client)
--- 	local status_ok, illuminate = pcall(require, "illuminate")
--- 	if not status_ok then
--- 		return
--- 	end
--- 	illuminate.on_attach(client)
--- end
-
 M.on_attach = function(client, bufnr)
-    if client.name == "tsserver" then
+    if client.name == "ts_ls" then  -- FIXED: was "tsserver"
         client.server_capabilities.document_formatting = false
     end
-    -- if client.name == "clangd" then
-    -- 	client.make_client_capabilities.offsetEncoding = "utf-16"
-    -- end
     lsp_keymaps(bufnr)
 end
 
